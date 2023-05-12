@@ -27,10 +27,22 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	@Override
 	public void borrarVertice(int verticeId) {
 		//Borrar los arcos del vertice
-	
+		//Investigar como iterar el hashmap
+		// Borrar los arcos q me estan apuntado
+		int aux = 0;
+		boolean existe = false;
+		for (int v : vertices.keySet()) {
+			for (Arco<T> a : vertices.get(v)) {
+				if(a.getVerticeDestino() == verticeId) {
+					aux = a.getVerticeOrigen();
+					existe = true;
+				}
+			}
+			if (existe)
+				this.borrarArco(aux, verticeId);
+		}
 		
-		
-		//Borrar el vertice
+		//Borrar el vertice (aca ya se borran mis arcos)
 		cantidadArcos-= vertices.get(verticeId).size();
 		vertices.remove(verticeId);
 		cantidadVertices--;
@@ -48,13 +60,19 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
 		if (this.existeArco(verticeId1, verticeId2)) {
-			int i=0;
 			ArrayList<Arco<T>> arcos = vertices.get(verticeId1);
+			arcos.remove(this.obtenerArco(verticeId1, verticeId2));
+			/*int i=0;
 			while (i<arcos.size()) {
-				if(!(arcos.get(i).getVerticeDestino()== verticeId2));//Redefinir equals en Arco
+				if((arcos.get(i).getVerticeDestino()== verticeId2));//Redefinir equals en Arco
 					arcos.remove(i); //Chequear complejidad remove si hace un recorrido o si es lineal
 				i++;
-			}
+			}*/
+			/*for (Arco<T> a : arcos) {
+				if(a.getVerticeDestino() == verticeId2) {
+					arcos.remove(a);
+				}	
+			}*/
 			cantidadArcos--;
 		}
 	}
@@ -121,5 +139,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
 		return null;
 	}
+	
 
+	public String toString() {
+		return this.vertices.toString() ;
+	}
 }
