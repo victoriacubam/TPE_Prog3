@@ -3,7 +3,9 @@ package tpe;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		GrafoDirigido<Integer> g = new GrafoDirigido<>();
+		
 		g.agregarVertice(8);
 		g.agregarVertice(7);
 		g.agregarVertice(5);

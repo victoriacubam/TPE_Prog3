@@ -1,10 +1,14 @@
 package tpe;
 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
-public class GrafoDirigido<T> implements Grafo<T> {
+public class GrafoDirigido<T, V, K> implements Grafo<T>{
 	
 	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
 	private int cantidadVertices;
@@ -27,8 +31,6 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	@Override
 	public void borrarVertice(int verticeId) {
 		//Borrar los arcos del vertice
-		//Investigar como iterar el hashmap
-		// Borrar los arcos q me estan apuntado
 		int aux = 0;
 		boolean existe = false;
 		for (int v : vertices.keySet()) {
@@ -52,7 +54,6 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 		if(vertices.containsKey(verticeId1)&&(vertices.containsKey(verticeId2))) {
 			vertices.get(verticeId1).add(new Arco<>(verticeId1, verticeId2, etiqueta));
-			//vertices.get(verticeId2).add(new Arco<>(verticeId1, verticeId2, etiqueta));	
 			cantidadArcos++;
 		}
 	}
@@ -62,17 +63,6 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		if (this.existeArco(verticeId1, verticeId2)) {
 			ArrayList<Arco<T>> arcos = vertices.get(verticeId1);
 			arcos.remove(this.obtenerArco(verticeId1, verticeId2));
-			/*int i=0;
-			while (i<arcos.size()) {
-				if((arcos.get(i).getVerticeDestino()== verticeId2));//Redefinir equals en Arco
-					arcos.remove(i); //Chequear complejidad remove si hace un recorrido o si es lineal
-				i++;
-			}*/
-			/*for (Arco<T> a : arcos) {
-				if(a.getVerticeDestino() == verticeId2) {
-					arcos.remove(a);
-				}	
-			}*/
 			cantidadArcos--;
 		}
 	}
@@ -122,7 +112,21 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		return null;
+		return vertices.keySet().iterator();
+	}
+	
+	private class Iterador<T> implements Iterator<T>{
+
+		@Override
+		public boolean hasNext() {
+			return false;
+		}
+
+		@Override
+		public T next() {
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -132,7 +136,13 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
-		return null;
+		Set<Entry<Integer, ArrayList<Arco<T>>>> a = vertices.entrySet();
+		ArrayList<T> aux = new ArrayList<>();
+		for (Entry<Integer, ArrayList<Arco<T>>> e : a) {
+			aux.addAll((Collection<? extends Set<Entry<Integer, ArrayList<Arco<T>>>>>) e);
+		}
+		//La re corremos y a cada lista la guardamos una una lista auxiliar addAll y a esa lista la iterator
+		return aux.iterator();
 	}
 
 	@Override
@@ -140,8 +150,13 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return null;
 	}
 	
-
 	public String toString() {
 		return this.vertices.toString() ;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
