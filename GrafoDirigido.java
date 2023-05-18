@@ -85,6 +85,23 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 		return false;
 	}
+	
+	/* No seria mejor con un while?
+	 * public boolean existeArco(int verticeId1, int verticeId2) {
+		if (this.contieneVertice(verticeId1) && (this.contieneVertice(verticeId2))) {
+			ArrayList<Arco<T>> arcos = vertices.get(verticeId1);
+			if (!arcos.isEmpty()) {
+				int i = 0;
+				while (i<arcos.size()) {
+					if(arcos.get(i).getVerticeDestino()==verticeId2)
+						return true;
+					i++;
+				}
+			}
+		}
+		return false;
+	}
+	 */
 
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
