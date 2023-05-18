@@ -123,6 +123,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 			for (Arco <T> a : arcos) {
 				aux.add(a.getVerticeDestino());
 			}
+			return aux.iterator();
 		}
 		return null;
 	}
