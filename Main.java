@@ -1,14 +1,14 @@
 package tpe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Iterator;
+
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		GrafoDirigido<Integer> g = new GrafoDirigido<>();
+		GrafoDirigido<Integer> g = new GrafoDirigido<Integer>();
 		
 		g.agregarVertice(8);
 		g.agregarVertice(7);
@@ -17,6 +17,7 @@ public class Main {
 		g.agregarVertice(6);
 		g.agregarVertice(2);
 		g.agregarVertice(3);
+		g.agregarVertice(9);
 		
 		g.agregarArco(8, 5, null);
 		g.agregarArco(8, 7, null);
@@ -26,8 +27,11 @@ public class Main {
 		g.agregarArco(5, 3, null);
 		
 		g.agregarArco(7, 4, null);
+		g.agregarArco(7, 5, null);
 		g.agregarArco(7, 6, null);
 		g.agregarArco(7, 8, null);
+		
+		g.agregarArco(2, 8, null);
 		/*
 		//System.out.println(g);
 		//System.out.println(g.cantidadArcos());
@@ -41,7 +45,19 @@ public class Main {
 		System.out.println(g.cantidadArcos());
 		System.out.println(g.cantidadVertices());
 		*/
-		g.obtenerVertices();
+		System.out.println("Adyacentes");
+		Iterator<Integer> i = g.obtenerAdyacentes(5);
+		while(i.hasNext()) {
+			System.out.println(i.next());
+		}
+		System.out.println("Vertices");
+		Iterator<Integer> e = g.obtenerVertices();
+		while(e.hasNext()) {
+			System.out.println(e.next());
+		}
+		
+		ServicioDFS dfs = new ServicioDFS(g);
+		System.out.println(dfs.dfsForest());
 	}
 
 

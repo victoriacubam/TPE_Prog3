@@ -1,16 +1,15 @@
 package tpe;
 
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T>{
 	
 	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
+	
 	private int cantidadVertices;
 	private int cantidadArcos;
 	
@@ -72,6 +71,10 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		return vertices.containsKey(verticeId);
 	}
 
+	/**
+	* Complejidad: O(X) donde X es ... debido a que debe
+	* "realizar lo siguiente" para verificar si existe un arco.
+	*/
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
 		if (this.contieneVertice(verticeId1) && (this.contieneVertice(verticeId2))) {
@@ -86,7 +89,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		return false;
 	}
 	
-	/* No seria mejor con un while?
+	/* No seria mejor con un while? para no cortar el for
 	 * public boolean existeArco(int verticeId1, int verticeId2) {
 		if (this.contieneVertice(verticeId1) && (this.contieneVertice(verticeId2))) {
 			ArrayList<Arco<T>> arcos = vertices.get(verticeId1);
@@ -131,7 +134,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	public Iterator<Integer> obtenerVertices() {
 		return vertices.keySet().iterator();
 	}
-	
+		
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
 		ArrayList<Arco<T>> arcos = vertices.get(verticeId);
@@ -168,6 +171,6 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 	
 	public String toString() {
-		return this.vertices.toString() ;
+		return this.vertices.toString();
 	}
 }
