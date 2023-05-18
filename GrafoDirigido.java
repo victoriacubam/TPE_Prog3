@@ -1,14 +1,14 @@
 package tpe;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
-public class GrafoDirigido<T, V, K> implements Grafo<T>{
+public class GrafoDirigido<T> implements Grafo<T>{
 	
 	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
 	private int cantidadVertices;
@@ -115,48 +115,41 @@ public class GrafoDirigido<T, V, K> implements Grafo<T>{
 		return vertices.keySet().iterator();
 	}
 	
-	private class Iterador<T> implements Iterator<T>{
-
-		@Override
-		public boolean hasNext() {
-			return false;
-		}
-
-		@Override
-		public T next() {
-			return null;
-		}
-		
-	}
-
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
+		ArrayList<Arco<T>> arcos = vertices.get(verticeId);
+		if (!arcos.isEmpty()) {
+			ArrayList<Integer> aux = new ArrayList<>();
+			for (Arco <T> a : arcos) {
+				aux.add(a.getVerticeDestino());
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
-		Set<Entry<Integer, ArrayList<Arco<T>>>> a = vertices.entrySet();
-		ArrayList<T> aux = new ArrayList<>();
-		for (Entry<Integer, ArrayList<Arco<T>>> e : a) {
-			aux.addAll((Collection<? extends Set<Entry<Integer, ArrayList<Arco<T>>>>>) e);
-		}
+		// Agarrar de mi hashmap todos los valores (arcos) y recorrer esa lista y a cada lista agregarla a otra lista para iterarla
 		//La re corremos y a cada lista la guardamos una una lista auxiliar addAll y a esa lista la iterator
-		return aux.iterator();
+		
+		Set<Map.Entry<Integer, ArrayList<Arco<T>>>> lista = vertices.entrySet();
+		if(lista.isEmpty()) {
+			ArrayList<Arco<T>> aux = new ArrayList<>();
+			for (Map.Entry<Integer, ArrayList<Arco<T>>> l : lista) {
+				aux.addAll(l.getValue());
+				return aux.iterator();
+			}			
+		}
+		return null;
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
-		return null;
+		ArrayList<Arco<T>> arcos = vertices.get(verticeId);
+		return arcos.iterator();
 	}
 	
 	public String toString() {
 		return this.vertices.toString() ;
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
