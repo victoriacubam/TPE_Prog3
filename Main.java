@@ -1,5 +1,9 @@
 package tpe;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -24,7 +28,7 @@ public class Main {
 		g.agregarArco(7, 4, null);
 		g.agregarArco(7, 6, null);
 		g.agregarArco(7, 8, null);
-		
+		/*
 		//System.out.println(g);
 		//System.out.println(g.cantidadArcos());
 		//System.out.println(g.cantidadVertices());
@@ -36,7 +40,9 @@ public class Main {
 		System.out.println(g);
 		System.out.println(g.cantidadArcos());
 		System.out.println(g.cantidadVertices());
-		
+		*/
+		g.obtenerVertices();
 	}
+
 
 }
