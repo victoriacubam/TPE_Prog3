@@ -30,7 +30,8 @@ public class ServicioDFS {
 			colores.put(v, this.sinVisitar);
 		}
 		Iterator<Integer> iter2 = grafo.obtenerVertices(); 
-		ArrayList<Integer> ordenVisitados = new ArrayList<>();
+		List<Integer> ordenVisitados = new ArrayList<>();
+		
 		while(iter2.hasNext()) {
 			int v = iter2.next();
 			if(colores.get(v)==this.sinVisitar) {
@@ -38,11 +39,10 @@ public class ServicioDFS {
 				dfsVisitar(v, ordenVisitados);
 			}
 		}
-		
 		return ordenVisitados;
 	}
 	
-	private void dfsVisitar(int vertice, ArrayList<Integer> ordenVisitados) {
+	private void dfsVisitar(int vertice, List<Integer> ordenVisitados) { //Se puede pasar por parametro? o mejor hacerlo metodo q retorne y hacer un add all?
 		colores.put(vertice, this.visitado);
 		Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(vertice);
 		if(adyacentes!=null) {

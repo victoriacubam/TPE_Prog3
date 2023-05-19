@@ -18,25 +18,15 @@ public class ServicioBFS {
 		this.visitados = new HashMap<>(); 
 	}
 	
-	/*
-	 * BFS (Grafo G):
-		Vaciar la fila F.
-		Para cada vértices v de G
-			Marcar v como NO_VISITADO.
-			Para cada vértice v de G
-				Si v es NO_VISITADO:
-					BFS(G,v)
-	 */
-	
 	public List<Integer> bfsForest() {
 		this.fila.clear();
 		Iterator<Integer> iter1 = grafo.obtenerVertices(); 
-		ArrayList<Integer> ordenVisitados = new ArrayList<>();
 		while(iter1.hasNext()) {
 			int v = iter1.next();
 			visitados.put(v, false);
 		}
 		
+		ArrayList<Integer> ordenVisitados = new ArrayList<>();
 		Iterator<Integer> iter2 = grafo.obtenerVertices(); 
 		while(iter2.hasNext()) {
 			int v = iter2.next();
@@ -47,20 +37,7 @@ public class ServicioBFS {
 		
 		return ordenVisitados;
 	}
-	
-	/*
-	 * BFS (Grafo G, vértice s):
-	 * 	Marcar el vértice s como VISITADO.
-		Agregar s a la fila F.
-		Mientras la fila F no esté vacía
-			Tomamos vértice x de la fila, 
-			Para cada vértice y adyacente a x:
-				Si y es NO_VISITADO :
-					Marcar el vértice y como VISITADO.
-					Agregar y a la fila F.
-	 */
-	
-	
+
 	private void bfsForest(int vertice, ArrayList<Integer> ordenVisitados) {
 		visitados.put(vertice, true);
 		this.fila.add(vertice);

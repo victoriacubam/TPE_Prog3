@@ -154,12 +154,12 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		//La re corremos y a cada lista la guardamos una una lista auxiliar addAll y a esa lista la iterator
 		
 		Set<Map.Entry<Integer, ArrayList<Arco<T>>>> lista = vertices.entrySet();
-		if(lista.isEmpty()) {
+		if(!lista.isEmpty()) {
 			ArrayList<Arco<T>> aux = new ArrayList<>();
 			for (Map.Entry<Integer, ArrayList<Arco<T>>> l : lista) {
 				aux.addAll(l.getValue());
-				return aux.iterator();
 			}			
+			return aux.iterator();
 		}
 		return null;
 	}
