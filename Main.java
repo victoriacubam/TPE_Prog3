@@ -1,6 +1,4 @@
 package tpe;
-
-
 import java.util.Iterator;
 
 
@@ -32,19 +30,39 @@ public class Main {
 		g.agregarArco(7, 8, null);
 		
 		g.agregarArco(2, 8, null);
+		
+			
 		/*
+		g.agregarVertice(1);
+		g.agregarVertice(2);
+		g.agregarVertice(3);
+		g.agregarVertice(4);
+		g.agregarVertice(5);
+		g.agregarVertice(6);
+		g.agregarVertice(7);
+		
+		g.agregarArco(1, 2, null);
+		g.agregarArco(1, 3, null);
+		g.agregarArco(3, 5, null);
+		g.agregarArco(2, 4, null);
+		g.agregarArco(5, 4, null);
+		g.agregarArco(4, 1, null);
+		g.agregarArco(4, 6, null);
+		g.agregarArco(4, 7, null);
+		*/
+		
 		//System.out.println(g);
 		//System.out.println(g.cantidadArcos());
 		//System.out.println(g.cantidadVertices());
 		//g.borrarArco(5, 2);
 		//System.out.println(g);
 		//g.borrarVertice(4);
-		System.out.println(g);
-		g.borrarVertice(7);
-		System.out.println(g);
-		System.out.println(g.cantidadArcos());
-		System.out.println(g.cantidadVertices());
-		*/
+		//System.out.println(g);
+		//g.borrarVertice(7);
+		//System.out.println(g);
+		//System.out.println(g.cantidadArcos());
+		//System.out.println(g.cantidadVertices());
+		
 		System.out.println("Adyacentes");
 		Iterator<Integer> i = g.obtenerAdyacentes(5);
 		while(i.hasNext()) {
@@ -55,9 +73,13 @@ public class Main {
 		while(e.hasNext()) {
 			System.out.println(e.next());
 		}
-		
 		ServicioDFS dfs = new ServicioDFS(g);
 		System.out.println(dfs.dfsForest());
+		
+		//System.out.println(dfs.colores());
+		
+		ServicioBFS bfs = new ServicioBFS(g);
+		System.out.println(bfs.bfsForest());
 	}
 
 
