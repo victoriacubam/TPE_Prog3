@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		GrafoDirigido<Integer> g = new GrafoDirigido<Integer>();
-		/*
+		
 		g.agregarVertice(8);
 		g.agregarVertice(7);
 		g.agregarVertice(5);
@@ -25,14 +25,15 @@ public class Main {
 		g.agregarArco(5, 3, null);
 		
 		g.agregarArco(7, 4, null);
-		g.agregarArco(7, 5, null);
+		//g.agregarArco(7, 5, null);
 		g.agregarArco(7, 6, null);
-		g.agregarArco(7, 8, null);
-		*/
+		g.agregarArco(6,4, null);
+		//g.agregarArco(7, 8, null);
+		
 		//g.agregarArco(2, 8, null);
 		
 			
-		
+		/*
 		g.agregarVertice(1);
 		g.agregarVertice(2);
 		g.agregarVertice(3);
@@ -49,7 +50,7 @@ public class Main {
 		g.agregarArco(4, 1, null);
 		g.agregarArco(4, 6, null);
 		g.agregarArco(4, 7, null);
-		
+		*/
 		
 		//System.out.println(g);
 		//System.out.println(g.cantidadArcos());
@@ -62,7 +63,7 @@ public class Main {
 		//System.out.println(g);
 		//System.out.println(g.cantidadArcos());
 		//System.out.println(g.cantidadVertices());
-		
+		/*
 		System.out.println("Adyacentes");
 		Iterator<Integer> i = g.obtenerAdyacentes(5);
 		while(i.hasNext()) {
@@ -72,14 +73,17 @@ public class Main {
 		Iterator<Integer> e = g.obtenerVertices();
 		while(e.hasNext()) {
 			System.out.println(e.next());
-		}
+		}*/
 		//ServicioDFS dfs = new ServicioDFS(g);
 		//System.out.println(dfs.dfsForest());
 		
 		//System.out.println(dfs.colores());
 		
-		ServicioBFS bfs = new ServicioBFS(g);
-		System.out.println(bfs.bfsForest());
+		//ServicioBFS bfs = new ServicioBFS(g);
+		//System.out.println(bfs.bfsForest());
+		
+		ServicioCaminos caminos = new ServicioCaminos(g,8,4,10);
+		System.out.println(caminos.caminos());
 	}
 
 
