@@ -37,8 +37,7 @@ public class ServicioCaminos {
 		camino.add(this.origen);
 		this.arcosVisitados.clear();
 		this.caminos.clear();
-		int saltos = 0;
-		buscarCaminos(this.origen, camino, saltos);
+		buscarCaminos(this.origen, camino, 1);
 		return caminos;
 	}
 	
@@ -56,8 +55,7 @@ public class ServicioCaminos {
 						this.arcosVisitados.add(a); //Lo marco como visitado
 						int verticeAdy =a.getVerticeDestino(); //Guardo el vertice adyacente de mi vertice actual (por el arco en el que estoy parado)
 						caminoEncontrado.add(verticeAdy); //Agrego el vertice a mi camino
-						saltos++; 
-						buscarCaminos(verticeAdy, caminoEncontrado, saltos); // Llamo recursivamente a la funcion para encontrar el camino que sigue a traves del vertice adyacente
+						buscarCaminos(verticeAdy, caminoEncontrado, saltos+1); // Llamo recursivamente a la funcion para encontrar el camino que sigue a traves del vertice adyacente
 						caminoEncontrado.remove(caminoEncontrado.size() -1); // Una vez que hizo un recorrido entero y ya no hay mas arcos sin visitar que recorrer, retrocede para explorar otros adyacentes
 						this.arcosVisitados.remove(a); // Cuando ya hizo un camino completo borra los visitados para buscar otros caminos
 					}

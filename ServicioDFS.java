@@ -9,7 +9,7 @@ import java.util.List;
 public class ServicioDFS {
 
 	private Grafo<Integer> grafo;
-	private HashMap<Integer, String> colores; // <Vertice, color> blanco: no visitado | amarillo: visitado | negro:ya no tiene mas a donde ir asi que vuelve en la recursion
+	private HashMap<Integer, String> colores;
 	private String sinVisitar;
 	private String visitado;
 	private String adyVisitados;
@@ -17,7 +17,7 @@ public class ServicioDFS {
 	
 	public ServicioDFS(Grafo<Integer> grafo) {
 		this.grafo = grafo;
-		this.colores = new HashMap<>(); // HashMap de clave valor donde la clave es el vertice y el valor es el color
+		this.colores = new HashMap<>();
 		this.sinVisitar = "blanco";
 		this.visitado = "amarillo";
 		this.adyVisitados = "negro";
@@ -56,13 +56,4 @@ public class ServicioDFS {
 		}
 		colores.put(vertice, this.adyVisitados);
 	}
-	
-	//Para probar
-	public HashMap<Integer, String> colores(){
-		return colores;
-	}
-
-	
-
-
 }
