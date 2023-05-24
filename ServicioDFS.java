@@ -42,7 +42,7 @@ public class ServicioDFS {
 		return ordenVisitados;
 	}
 	
-	private void dfsVisitar(int vertice, List<Integer> ordenVisitados) { //Se puede pasar por parametro? o mejor hacerlo metodo q retorne y hacer un add all?
+	private void dfsVisitar(int vertice, List<Integer> ordenVisitados) { 
 		colores.put(vertice, this.visitado);
 		Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(vertice);
 		if(adyacentes!=null) {

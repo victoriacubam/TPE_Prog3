@@ -20,8 +20,8 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 	
 	/**
-	* Complejidad: O(n) donde n es la cantidad de elementos del HashMap debido a que debe
-	* recorrer toda la estructura para verificar si existe el vertice que se quiere insertar. Insertarlo es O(n).
+	* Complejidad: O(1) es constante, ya que consultar si contiene ese vertice es O(1) 
+	* y agregarlo asumimos que es O(1) al ser un metodo de HashMap
 	*/
 	@Override
 	public void agregarVertice(int verticeId) {
@@ -32,12 +32,11 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(X) donde X es ... debido a que debe
-	* "realizar lo siguiente" para borrar un vertice y sus arcos asociados.
+	* Complejidad: O(n)^2 = O(V) * O(A) donde V es la cantidad de vertices y A es la cantidad de Arcos de cada vertice,
+	* ya que debe realizar un recorrido por sus vertices y por cada vertice recorre sus arcos.
 	*/
 	@Override
 	public void borrarVertice(int verticeId) {
-		//Borrar los arcos del vertice
 		int aux = 0;
 		boolean existe = false;
 		for (int v : vertices.keySet()) {
@@ -51,15 +50,13 @@ public class GrafoDirigido<T> implements Grafo<T>{
 				this.borrarArco(aux, verticeId);
 		}
 		
-		//Borrar el vertice (aca ya se borran mis arcos)
 		cantidadArcos-= vertices.get(verticeId).size();
 		vertices.remove(verticeId);
 		cantidadVertices--;
 	}
 
 	/**
-	* Complejidad: O(n) donde n es la cantidad de elementos del HashMap debido a que debe
-	* buscar en toda la estructa si existe los vertices que se quieren unir a traves de un arco, luego agregarlo es O(1).
+	* Complejidad: O(1) ya que se supone una complejidad O(1) para los metodos de HashMap y en este caso utilizamos metodos de la estructura
 	*/
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
@@ -70,7 +67,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n) donde n es el tamaño del ArrayList de arcos debido a que debe
+	* Complejidad: O(n) donde n es el tamaño del ArrayList de arcos debido a que 
 	* en el peor de los casos encontraria (o no) el Arco al final de la lista.
 	*/
 	@Override
@@ -108,23 +105,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 		return false;
 	}
-	
-	/* No seria mejor con un while? para no cortar el for
-	 * public boolean existeArco(int verticeId1, int verticeId2) {
-		if (this.contieneVertice(verticeId1) && (this.contieneVertice(verticeId2))) {
-			ArrayList<Arco<T>> arcos = vertices.get(verticeId1);
-			if (!arcos.isEmpty()) {
-				int i = 0;
-				while (i<arcos.size()) {
-					if(arcos.get(i).getVerticeDestino()==verticeId2)
-						return true;
-					i++;
-				}
-			}
-		}
-		return false;
-	}
-	 */
+
 
 	/**
 	* Complejidad: O(n) donde n es el tamaño del ArrayList de arcos debido a que debe
@@ -163,8 +144,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n) donde n es el total de elementos del HashMap debido a que debe
-	* recorrerlos a todos para iterarlos.
+	* Complejidad: O(1) ya que implementa un metodo de hashmap que asumimos O(1)
 	*/
 	@Override
 	public Iterator<Integer> obtenerVertices() {
@@ -189,8 +169,8 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n) donde n es la cantidad de arcos debido a que debe
-	* recorrerlos a todos para agregarlos al ArrayList auxiliar.
+	* Complejidad: O(n) donde n es la cantidad de elementos de nuestra estructura debido a que debe
+	* recorrerlos a todos para obtener su valor (lista de arcos) y agregarlos al ArrayList auxiliar.
 	*/
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
@@ -205,8 +185,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n) donde n es la cantidad de vertices totales debido a que debe
-	* recorrer cada elemento del hashmap para almacenar su valor dado la clave (vertice).
+	* Complejidad: O(1) debido a que utiliza un metodo de HashMap que asumimos O(1)
 	*/
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {

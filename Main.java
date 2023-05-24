@@ -26,6 +26,9 @@ public class Main {
 		
 		g1.agregarArco(7, 4, null);
 		g1.agregarArco(7, 6, null);
+		g1.agregarArco(7, 5, null);
+		
+		g1.agregarArco(2, 4, null);
 		
 		
 		GrafoDirigido<Integer> g2 = new GrafoDirigido<Integer>();
@@ -55,7 +58,7 @@ public class Main {
 		System.out.println(bfs.bfsForest());
 		
 		System.out.println("Grafo 1: Servicio caminos, con origen 8 y destino 4 y limite 4: ");
-		ServicioCaminos caminos = new ServicioCaminos(g1,8,4,4);
+		ServicioCaminos caminos = new ServicioCaminos(g1,8,4,5);
 		System.out.println(caminos.caminos());
 		
 		System.out.println("Grafo 1: Cantidad de arcos: " + g1.cantidadArcos());
