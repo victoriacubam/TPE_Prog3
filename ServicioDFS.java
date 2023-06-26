@@ -29,6 +29,7 @@ public class ServicioDFS {
 			int v = iter1.next();
 			colores.put(v, this.sinVisitar);
 		}
+		
 		Iterator<Integer> iter2 = grafo.obtenerVertices(); 
 		List<Integer> ordenVisitados = new ArrayList<>();
 		

@@ -13,6 +13,9 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	private int cantidadVertices;
 	private int cantidadArcos;
 	
+	/**
+	 * Complejidad: O(1) ya que se supone una complejidad O(1) para el HashMap e inicializar dos variables de tipo entero tambien es O(1)
+	 */
 	public GrafoDirigido() {
 		this.vertices = new HashMap<>();
 		this.cantidadVertices = 0;
@@ -32,8 +35,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n)^2 = O(V) * O(A) donde V es la cantidad de vertices y A es la cantidad de Arcos de cada vertice,
-	* ya que debe realizar un recorrido por sus vertices y por cada vertice recorre sus arcos.
+	* Complejidad: O(n+m) donde n es la cantidad de vertices y m es la cantidad de arcos. Ya que al borrar un vertice se borran sus arcos asociados.
 	*/
 	@Override
 	public void borrarVertice(int verticeId) {
@@ -56,13 +58,16 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(1) ya que se supone una complejidad O(1) para los metodos de HashMap y en este caso utilizamos metodos de la estructura
+	* Complejidad: O(n) ya que se supone una complejidad O(1) para los metodos de HashMap y O(n) con n como la cantidad de Arcos, ya que
+	* en el peor de los casos recorreria todo el arraylist de arcos para chequear que no exista.
 	*/
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
-		if(vertices.containsKey(verticeId1)&&(vertices.containsKey(verticeId2))) {
-			vertices.get(verticeId1).add(new Arco<>(verticeId1, verticeId2, etiqueta));
-			cantidadArcos++;
+		if((vertices.containsKey(verticeId1)&&(vertices.containsKey(verticeId2)))) {
+			if(!existeArco(verticeId1, verticeId2)) {
+				vertices.get(verticeId1).add(new Arco<>(verticeId1, verticeId2, etiqueta));
+				cantidadArcos++;				
+			}
 		}
 	}
 
@@ -89,8 +94,8 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	}
 
 	/**
-	* Complejidad: O(n) donde n es el tamaño del ArrayList de arcos debido a que debe
-	* recorrerlo hasta el ultimo elemento para verificar si existe un arco especifico entre dos vertices.
+	* Complejidad: O(n) donde n es el tamaño del ArrayList de arcos del verticeId1 (origen) debido a que debe
+	* recorrerlo hasta el ultimo elemento para verificar si existe un arco especifico entre el verticeId1 y el verticeId2.
 	*/
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
@@ -192,4 +197,47 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		ArrayList<Arco<T>> arcos = vertices.get(verticeId);
 		return arcos.iterator();
 	}
+	
+	public void imprimirGrafo() {
+		Iterator<Integer> it = this.obtenerVertices();
+		while(it.hasNext()) {
+			Integer key = it.next();
+			System.out.println("Vertice " + key + " --> Arcos: "+ vertices.get(key) );
+		}
+	}
+	
+	public void imprimirEtiquetaArco() {
+		Iterator<Arco<T>> it = this.obtenerArcos();
+		while(it.hasNext()) {
+			Arco<T> key = it.next();
+			System.out.println("Arco" + key + " --> etiqueta: "+key.getEtiqueta() );
+		}
+	}
+	
+	public String toString() {
+		return this.vertices.toString() ;
+	}
+	
+	public boolean isConexo() {
+		UnionFind componentes = new UnionFind(this.cantidadVertices() - 1);
+		Iterator<Arco<T>> it = this.obtenerArcos();
+		if(it != null) {
+			while(it.hasNext()) {
+				Arco<T> arco = it.next();
+				int u = arco.getVerticeOrigen();
+				int v = arco.getVerticeDestino();
+				int representanteU = componentes.find(u); 
+				System.out.println("u:"+representanteU);
+				int representanteV = componentes.find(v);
+				System.out.println("v:"+representanteV);
+				if(representanteU != representanteV) {
+					componentes.union(representanteU, representanteV);
+				}
+			}
+		}
+		return componentes.count() == 1;
+	}
+	
+	
+	
 }
