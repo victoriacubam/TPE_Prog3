@@ -5,9 +5,9 @@ public class MainParte2 {
     
     public static void main(String[] args) {
     	
-		GrafoDirigido<Integer> gND1 = new GrafoDirigido<>();
-		GrafoDirigido<Integer> gND2 = new GrafoDirigido<>();
-		GrafoDirigido<Integer> gND3 = new GrafoDirigido<>();
+		GrafoDirigido<Integer> g1 = new GrafoDirigido<>();
+		GrafoDirigido<Integer> g2 = new GrafoDirigido<>();
+		GrafoDirigido<Integer> g3 = new GrafoDirigido<>();
 		
 		// Cambiar rutas segun sea necesario
 		String path1 = "C:/Users/Victoria/Documents/datasets/dataset1.txt";
@@ -15,13 +15,13 @@ public class MainParte2 {
 		String path3 = "C:/Users/Victoria/Documents/datasets/dataset3.txt";
 
 		CSVReader reader = new CSVReader(path1);
-		reader.read(gND1);
+		reader.read(g1);
 		
 		CSVReader reader2 = new CSVReader(path2);
-		reader2.read(gND2);
+		reader2.read(g2);
 		
 		CSVReader reader3 = new CSVReader(path3);
-		reader3.read(gND3);	
+		reader3.read(g3);	
 		
 		
 		// GREEDY DATASET 1
@@ -29,7 +29,7 @@ public class MainParte2 {
 		System.out.println("Greedy Dataset 1");
 		
 		Greedy greedy = new Greedy();
-		ArrayList<Arco<Integer>> solucionGreedy1 = greedy.greedy(gND1);
+		ArrayList<Arco<Integer>> solucionGreedy1 = greedy.greedy(g1);
 		System.out.println(greedy.mostrarEstaciones(solucionGreedy1)
 							+ "\n"+ greedy.calcularKm(solucionGreedy1)
 							+ " kms" +"\n"+ "métrica: " + greedy.getMetrica());
@@ -43,7 +43,7 @@ public class MainParte2 {
 		
 		int kmGreedy1 = greedy.getMejorKm();
 		Backtracking back = new Backtracking(kmGreedy1);
-		ArrayList<Arco<Integer>> solBack1 = back.backtracking(gND1);
+		ArrayList<Arco<Integer>> solBack1 = back.backtracking(g1);
 		
 		System.out.println(back.mostrarEstaciones(solBack1)
 							+ "\n"+ back.calcularKm(solBack1)
@@ -57,7 +57,7 @@ public class MainParte2 {
 		System.out.println("Greedy Dataeset 2");
 
 		Greedy greedy2 = new Greedy();
-		ArrayList<Arco<Integer>> solGreedy2 = greedy2.greedy(gND2);
+		ArrayList<Arco<Integer>> solGreedy2 = greedy2.greedy(g2);
 		System.out.println(greedy2.mostrarEstaciones(solGreedy2)
 							+ "\n"+ greedy2.calcularKm(solGreedy2)
 							+ " kms" +"\n"+ "métrica: " + greedy2.getMetrica());
@@ -71,7 +71,7 @@ public class MainParte2 {
 		
 		int kmGreedy2 = greedy2.getMejorKm();
 		Backtracking back2 = new Backtracking(kmGreedy2);
-		ArrayList<Arco<Integer>> solBack2 = back2.backtracking(gND2);
+		ArrayList<Arco<Integer>> solBack2 = back2.backtracking(g2);
 		
 		System.out.println(back2.mostrarEstaciones(solBack2)
 							+ "\n"+ back2.calcularKm(solBack2)
@@ -85,7 +85,7 @@ public class MainParte2 {
 		System.out.println("Greedy Dataset 3");
 		
 		Greedy greedy3 = new Greedy();
-		ArrayList<Arco<Integer>> solGreedy3 = greedy3.greedy(gND3);
+		ArrayList<Arco<Integer>> solGreedy3 = greedy3.greedy(g3);
 		
 		System.out.println(greedy3.mostrarEstaciones(solGreedy3)
 							+ "\n"+ greedy3.calcularKm(solGreedy3)
@@ -101,9 +101,9 @@ public class MainParte2 {
 		int kmGreedy3 = greedy3.getMejorKm();
 
 		Backtracking back3 = new Backtracking(kmGreedy3);
-		System.out.println(back3.backtracking(gND3));
+		System.out.println(back3.backtracking(g3));
 		
-		ArrayList<Arco<Integer>> solBack3 = back3.backtracking(gND3);
+		ArrayList<Arco<Integer>> solBack3 = back3.backtracking(g3);
 
 		System.out.println(back3.mostrarEstaciones(solBack3)
 							+ "\n"+ back3.calcularKm(solBack3)
