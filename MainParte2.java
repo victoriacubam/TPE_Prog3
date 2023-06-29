@@ -5,9 +5,9 @@ public class MainParte2 {
     
     public static void main(String[] args) {
     	
-		GrafoNoDirigido<Integer> gND1 = new GrafoNoDirigido<>();
+		GrafoDirigido<Integer> gND1 = new GrafoDirigido<>();
 		GrafoDirigido<Integer> gND2 = new GrafoDirigido<>();
-		GrafoNoDirigido<Integer> gND3 = new GrafoNoDirigido<>();
+		GrafoDirigido<Integer> gND3 = new GrafoDirigido<>();
 		
 		// Cambiar rutas segun sea necesario
 		String path1 = "C:/Users/Victoria/Documents/datasets/dataset1.txt";
