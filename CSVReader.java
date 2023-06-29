@@ -15,7 +15,7 @@ public class CSVReader {
 		this.path = path;
 	}
 	
-	public void read(GrafoNoDirigido<Integer> g) {
+	public void read(GrafoDirigido<Integer> g) {
 		
 		// Obtengo una lista con las lineas del archivo
 		// lines.get(0) tiene la primer linea del archivo
