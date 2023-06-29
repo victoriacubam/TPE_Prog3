@@ -52,16 +52,16 @@ public class Backtracking {
         	Arco<Integer> arco = arcos.get(0);
 			arcos.remove(arco);
 			
-				solucionParcial.add(arco);
-				sumaParcial += arco.getEtiqueta();
+			solucionParcial.add(arco);
+			sumaParcial += arco.getEtiqueta();
 				
-				//PODA
-				if(sumaParcial <= mejorKM){
-					backtracking(solucionParcial, g, arcos, sumaParcial);
-				}
+			//PODA
+			if(sumaParcial <= mejorKM){
+				backtracking(solucionParcial, g, arcos, sumaParcial);
+			}
 				
-				solucionParcial.remove(arco);
-				sumaParcial -= arco.getEtiqueta();
+			solucionParcial.remove(arco);
+			sumaParcial -= arco.getEtiqueta();
 			
 			//PODA
 			if(sumaParcial <= mejorKM){
