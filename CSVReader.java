@@ -31,9 +31,7 @@ public class CSVReader {
 			g.agregarVertice(origen);
 			g.agregarVertice(destino);
 			g.agregarArco(origen, destino, etiqueta);
-			// Aca instanciar lo que necesiten en base a los datos leidos
-		}
-		
+		}		
 	}
 
 	private ArrayList<String[]> readContent() {

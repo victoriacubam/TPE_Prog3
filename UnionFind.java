@@ -7,11 +7,12 @@ public class UnionFind {
     private ArrayList<Integer> representantes;
 	private int count;
 	
-	public UnionFind(int cantVertices) {//inicializo todos los vertices en -1, cada uno es un conjunto
+	public UnionFind(int cantVertices) { 
 		this.representantes = new ArrayList<>();
+		//inicializo todos los vertices en -1, cada uno es un conjunto
 		for(int i = 0; i <= cantVertices; i++) {
-			representantes.add(-1); //    [-1,-1,-1,-1]
-		}                           // i=  0 , 1, 2, 3
+			representantes.add(-1);
+		}
 		this.count = cantVertices;
 	}
 
@@ -27,10 +28,10 @@ public class UnionFind {
 	 }
 	 
 	 public int find(int i) {
-		while(representantes.get(i) >= 0){ // Mientras que el representante de i no sea -1 
+		while(representantes.get(i) >= 0){
 			i = representantes.get(i);
 		}
-		return i; // Retorno i o retorno null?
+		return i;
 	}
 	
 }

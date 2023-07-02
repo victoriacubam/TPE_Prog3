@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Greedy {
-    ComparadorArco comparador = new ComparadorArco();
-	private int metrica; //Candidatos
+    ComparadorArco comparador;
+	private int metrica;
 	private int mejorKm;
 
 	public Greedy() {
+		this.comparador = new ComparadorArco();
 		this.metrica = 0; 
 		this.mejorKm = 0;
 	}
@@ -17,29 +18,28 @@ public class Greedy {
 		
 		ArrayList<Arco<Integer>> solucion = new ArrayList<Arco<Integer>>();
 		ArrayList<Arco<Integer>> arcos = ordenarArcos(grafo);
-
 		ArrayList<Integer> vertices = obtenerVertices(grafo);
 		
 		UnionFind conjuntos = new UnionFind(grafo.cantidadVertices());
 		
-		while((conjuntos.count() > 1) && (!arcos.isEmpty())) { //Mientras que tenga mas de un conjunto y no me haya quedado sin arcos
+		while((conjuntos.count() > 1) && (!arcos.isEmpty())) {
 
-			Arco<Integer> arco = arcos.get(0); //Tomo el primer arco de mi "pila"
+			Arco<Integer> arco = arcos.get(0);
 			arcos.remove(0);
 			
-			int repOrigen = conjuntos.find(vertices.indexOf(arco.getVerticeOrigen())); //Al arco que tome, le busco la posicion de su v origen 
-			int repDestino = conjuntos.find(vertices.indexOf(arco.getVerticeDestino())); // y v destino
+			int repOrigen = conjuntos.find(vertices.indexOf(arco.getVerticeOrigen()));
+			int repDestino = conjuntos.find(vertices.indexOf(arco.getVerticeDestino()));
 			
-			if(repOrigen != repDestino) { //Si no tienen el mismo representante
-				solucion.add(arco); // Inserto a mi solucion ese arco
-				conjuntos.union(repOrigen, repDestino); //Los dos conjuntos que tenia separados ahora se vuelven uno solo
+			if(repOrigen != repDestino) {
+				solucion.add(arco);
+				conjuntos.union(repOrigen, repDestino);
 			}
 			metrica++;
 		}
-		if(conjuntos.count() == 1) { //Ya tengo todo en un solo conjunto
+		if(conjuntos.count() == 1) {
 			return solucion;
 		}
-		return null; //No tengo solucion
+		return null;
 	}
 
 	public String mostrarEstaciones(ArrayList<Arco<Integer>> solucion){
@@ -84,7 +84,7 @@ public class Greedy {
 			Arco<Integer> arco = iter.next();
 			arcos.add(arco);
 		}
-		arcos.sort(comparador); //Ordena los arcos de menor a mayor en base a su etiqueta (distancia)
+		arcos.sort(comparador);
 		return arcos;
 	}
 	

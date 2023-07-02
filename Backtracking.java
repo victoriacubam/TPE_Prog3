@@ -7,7 +7,7 @@ public class Backtracking {
     private ArrayList<Arco<Integer>> solucion;
 	private ArrayList<Arco<Integer>> arcos;
 	private int mejorKM;
-	private int metrica; // Las entradas que genera
+	private int metrica;
 	
 
 	public Backtracking(int limiteGreedy) {
@@ -34,9 +34,9 @@ public class Backtracking {
 	}		
 	
 	private void backtracking(ArrayList<Arco<Integer>> solucionParcial, GrafoDirigido<Integer> g, ArrayList<Arco<Integer>> arcos, int sumaParcial) {
-		metrica++; //Veces que llamo a esta funcion
+		metrica++;
 		// Condicion de corte
-		if (arcos.isEmpty()|| (solucionParcial.size()==g.cantidadVertices()-1)) { //Si ya me quede sin arcos
+		if (arcos.isEmpty() || (solucionParcial.size()==g.cantidadVertices()-1)) { //Si ya me quede sin arcos
             if(!solucionParcial.isEmpty()){ //Si tengo una solucion parcial
                 if(this.esConexo(g, solucionParcial)){//chequeo sea conexo
                     if(sumaParcial <= this.mejorKM) {
@@ -46,7 +46,7 @@ public class Backtracking {
                     } 
                 }
             }
-        } else { //tengo mas arcos
+        } else {
     		
 			//LLAMADA A BACK 
         	Arco<Integer> arco = arcos.get(0);
@@ -67,7 +67,7 @@ public class Backtracking {
 			if(sumaParcial <= mejorKM){
 				backtracking(solucionParcial, g, arcos, sumaParcial);
 			}
-			arcos.add(0, arco); //Lo vuelvo a agregar
+			arcos.add(0, arco);
         }
 		
 	}		
@@ -115,7 +115,7 @@ public class Backtracking {
 				componentes.union(representanteO, representanteD);
 			}
 		}
-		return componentes.count() == 1; //Si solo queda un conjunto significa que es conexo, si queda <1 conjunto quiere decir que hay vertices que no pueden unirse
+		return componentes.count() == 1; 
 	}
 	
 	private ArrayList<Integer> obtenerVertices(Grafo<Integer> grafo){

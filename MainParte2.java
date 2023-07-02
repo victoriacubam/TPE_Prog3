@@ -10,9 +10,9 @@ public class MainParte2 {
 		GrafoDirigido<Integer> g3 = new GrafoDirigido<>();
 		
 		// Cambiar rutas segun sea necesario
-		String path1 = "C:/Users/Victoria/Documents/datasets/dataset1.txt";
-		String path2 = "C:/Users/Victoria/Documents/datasets/dataset2.txt";
-		String path3 = "C:/Users/Victoria/Documents/datasets/dataset3.txt";
+		String path1 = "/datasets/dataset1.txt";
+		String path2 = "/datasets/dataset2.txt";
+		String path3 = "/datasets/dataset3.txt";
 
 		CSVReader reader = new CSVReader(path1);
 		reader.read(g1);
@@ -54,7 +54,7 @@ public class MainParte2 {
 		
 		// GREEDY DATASET 2
 		
-		System.out.println("Greedy Dataeset 2");
+		System.out.println("Greedy Dataset 2");
 
 		Greedy greedy2 = new Greedy();
 		ArrayList<Arco<Integer>> solGreedy2 = greedy2.greedy(g2);
@@ -99,10 +99,7 @@ public class MainParte2 {
 		System.out.println("Backtracking Dataset 3");
 
 		int kmGreedy3 = greedy3.getMejorKm();
-
-		Backtracking back3 = new Backtracking(kmGreedy3);
-		System.out.println(back3.backtracking(g3));
-		
+		Backtracking back3 = new Backtracking(kmGreedy3);		
 		ArrayList<Arco<Integer>> solBack3 = back3.backtracking(g3);
 
 		System.out.println(back3.mostrarEstaciones(solBack3)
